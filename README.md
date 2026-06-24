@@ -2,6 +2,18 @@
 
 An end-to-end batch ETL pipeline that ingests ~29GB of raw US flight itinerary data, lands it in HDFS, and processes it through a **Bronze → Silver → Gold (medallion) architecture** using **Hive** for transformation and **Apache Airflow** for orchestration — all containerized with **Docker Compose**.
 
+## Key results
+
+**Business:**
+- Pricing comparison across airlines — e.g. Alaska Airlines avg fare **$285.91** (7,587 flights) vs Delta avg fare **$508.98** (1,496 flights)
+- Busiest route identified: **LGA → LAX, 3,076 flights**, followed by LAX→EWR (2,931) and LAX→LGA (2,907)
+- Seasonal fare swing detected: April avg fare **$360.55** (203,125 flights) vs May avg fare **$323.98** (148,792 flights), a ~10% drop
+
+**System:**
+- **28.96GB** raw CSV ingested into HDFS Bronze layer, cleaned down to **351,917 rows** in the Silver layer
+- HDFS storage footprint: only **2.91% disk used** (29.32GB / 1006.85GB capacity) — comfortable headroom for scale
+- Storage format optimization across layers: raw CSV (text) → **ORC** (Silver, columnar + compressed) → **Parquet** (Gold, columnar + compressed)
+
 ## The 5 V's of Big Data this project addresses
 
 ![Big Data 5 Vs](docs/images/big_data_5vs.png)
@@ -108,7 +120,3 @@ The full dataset (~29GB, [Expedia flight itineraries](https://www.kaggle.com/dat
 |---|---|
 | **Average price by airline** ![Avg price](docs/images/avg_price.png) | **Most frequent routes** ![Frequent routes](docs/images/frequent_route.png) |
 | **Price distribution by month** ![Price distribution](docs/images/price_distribution.png) | |
-
-## Notes
-
-This project was built as part of an M.Sc. Data Analytics Big Data Analytics module. The architecture and code were iterated on across several versions (raw Hadoop/Hive scripts → full Airflow orchestration) before arriving at this final pipeline.
