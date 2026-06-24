@@ -1,0 +1,42 @@
+# Ignore version control files
+.git
+.gitignore
+
+# Ignore Python cache files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore development and test files
+*.log
+*.sql
+*.sqlite
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore virtual environment
+venv/
+env/
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+
+# Ignore Docker specific files
+Dockerfile
+docker-compose.yml
+
+# Ignore documentation
+README.md
+docs/
+
+# Ignore any local configuration files
+*.conf
+*.cfg
+
+# Ignore temporary files
+*.tmp
+*.swp

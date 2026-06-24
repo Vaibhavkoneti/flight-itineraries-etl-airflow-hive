@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+airflow/logs/
+airflow/plugins/__pycache__/
+airflow/data/*.csv
+!airflow/data/itineraries_sample.csv
+airflow/data/*.zip
+.env
+.DS_Store
